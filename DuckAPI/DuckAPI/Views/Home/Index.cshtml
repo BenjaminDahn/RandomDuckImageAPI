@@ -1,0 +1,77 @@
+﻿@model DuckAPI.Models.APIResponse   //tells the view that this is the model used for displaying items
+
+
+<style>
+    body {
+        background: radial-gradient(circle at top, #0b0c10, #000000);
+        color: #ffffff;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    h1, h2 {
+        color: #00bfff;
+    }
+
+    .api-card {
+        background-color: rgba(20, 20, 30, 0.85);
+        border: 1px solid #1c1c3c;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+    }
+
+    .form-control, .btn {
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn-primary {
+        background-color: #0077ff;
+        border-color: #0056b3;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004080;
+        }
+
+    label {
+        color: #b0c4de;
+    }
+
+    iframe, img {
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .explanation {
+        font-size: 1rem;
+        color: #cdd9e5;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Duck picture</h1>
+    </div>
+
+    <div class="api-card mx-auto" style="max-width: 600px;">  <!-- generate new random image -->
+        <form asp-action="Index" method="get">
+            <button type="submit" class="btn btn-primary w-100">Generate new image</button>
+        </form>
+    </div>
+   
+    <div class="apod-card mx-auto mb-5" style="max-width: 900px;">
+        @if (Model != null)
+        {
+            <img src="@Model.url" alt="Duck image" class="img-fluid shadow" /> <!--display the model image-->
+            <h2>@Model.message</h2> <!-- API response message -->
+        }
+        else
+        {
+            <p>No data available.</p>
+        }
+    </div>
+
+   
+    
+</div>
